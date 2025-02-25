@@ -1,0 +1,63 @@
+index.html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design 3D Ristorazione</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <h1>Design 3D per Ristoranti, Bar e Caffetterie</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#servizi">Servizi</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contatti">Contatti</a>
+        </nav>
+    </header>
+
+    <!-- Sezione 3D -->
+    <section id="home" class="section home-section">
+        <h2>Esplora il Nostro Design in 3D</h2>
+        <div id="canvas-container"></div>
+    </section>
+
+    <!-- Sezione Servizi -->
+    <section id="servizi" class="section">
+        <h2>Servizi Offerti</h2>
+        <p>Interior Design, Menù Cartacei e Digitali, Siti Web e Applicazioni.</p>
+    </section>
+
+    <!-- Sezione Portfolio -->
+    <section id="portfolio" class="section">
+        <h2>Portfolio</h2>
+        <p>Alcuni dei nostri progetti realizzati con un tocco 3D.</p>
+    </section>
+
+    <!-- Sezione Contatti -->
+    <section id="contatti" class="section">
+        <h2>Contattaci</h2>
+        <form>
+            <label>Nome:</label><br>
+            <input type="text" required><br>
+            <label>Email:</label><br>
+            <input type="email" required><br>
+            <label>Messaggio:</label><br>
+            <textarea required></textarea><br>
+            <button type="submit">Invia</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Design 3D Ristorazione</p>
+    </footer>
+
+    <!-- Three.js CDN e script principale -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
