@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barber Fratelli — Milano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar" aria-label="Navigazione principale">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Barber Fratelli logo" width="44" height="44" class="nav-logo-img" />
+      <span>BARBER <em>FRATELLI</em></span>
+    </div>
+    <ul class="nav-links" role="list">
+      <li><a href="#services" class="nav-link">Servizi</a></li>
+      <li><a href="#team" class="nav-link">Team</a></li>
+      <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Prenota ora</a>
+  </nav>
+
+  <!-- SCENE LABEL -->
+  <div class="scene-label" id="sceneLabel" aria-live="polite"></div>
+
+  <!-- 3D CANVAS -->
+  <div class="canvas-wrapper" id="canvasWrapper" aria-hidden="true">
+    <canvas id="journeyCanvas"></canvas>
+  </div>
+
+  <!-- SCROLL TRACK -->
+  <div class="scroll-track" id="scrollTrack" aria-hidden="true"></div>
+
+  <!-- JOURNEY OVERLAY -->
+  <div class="journey-overlay" id="journeyOverlay">
+
+    <!-- Intro (fase 0) -->
+    <div class="journey-intro" id="journeyIntro">
+      <img src="logo.png" alt="" class="intro-logo" aria-hidden="true" />
+      <h1 class="journey-title">BARBER<br/><em>Fratelli</em></h1>
+      <p class="journey-sub">Milano · Dal 1987 · Scorri per entrare</p>
+      <div class="scroll-cue" aria-hidden="true">
+        <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
+          <rect x="1" y="1" width="22" height="38" rx="11" stroke="#CA8A04" stroke-width="1.5"/>
+          <circle class="scroll-dot" cx="12" cy="10" r="3" fill="#CA8A04"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Testi fasi -->
+    <div class="phase-text" id="phaseText" aria-live="polite"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- SERVICES -->
+    <section class="section-services" id="services">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">I Nostri Servizi</span>
+          <h2 class="section-title">Arte<br/><em>del rasoio</em></h2>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M10 10L26 26M10 26L26 10" stroke="#CA8A04" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="18" cy="18" r="8" stroke="#CA8A04" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>Taglio Classico</h3>
+            <p>Forbici e rasoio, tecnica tradizionale affinata in decenni di mestiere artigianale.</p>
+            <span class="service-price">€ 35</span>
+            <span class="service-duration">45 min</span>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M18 4C10.268 4 4 10.268 4 18s6.268 14 14 14 14-6.268 14-14S25.732 4 18 4z" stroke="#CA8A04" stroke-width="1.5"/>
+                <path d="M18 11v7l5 2.5" stroke="#CA8A04" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Rasatura Rasoio</h3>
+            <p>Hot towel, crema artigianale, rasoio a mano libera. Un rituale senza compromessi.</p>
+            <span class="service-price">€ 45</span>
+            <span class="service-duration">60 min</span>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M10 28L18 10l8 18" stroke="#CA8A04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13 22h10" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Taglio + Barba</h3>
+            <p>Il pacchetto completo. Esci da qui come una versione migliore di te stesso.</p>
+            <span class="service-price">€ 70</span>
+            <span class="service-duration">90 min</span>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <rect x="8" y="8" width="20" height="20" rx="3" stroke="#CA8A04" stroke-width="1.5"/>
+                <path d="M8 15h20M15 8v20" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Trattamento Premium</h3>
+            <p>Maschera viso, massaggio cuoio capelluto, olio da barba. 90 minuti di puro lusso.</p>
+            <span class="service-price">€ 95</span>
+            <span class="service-duration">90 min</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section-team" id="team">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Il Team</span>
+          <h2 class="section-title">Maestri<br/><em>del mestiere</em></h2>
+        </div>
+        <div class="team-grid">
+          <article class="team-card reveal">
+            <div class="team-avatar" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="15" r="8" stroke="#CA8A04" stroke-width="1.5"/>
+                <path d="M6 38c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Marco Fratelli</h3>
+            <span class="team-role">Master Barber · 22 anni</span>
+            <p>Fondatore. Formato a Napoli, perfezionato a Londra. La sua rasatura è un'opera d'arte.</p>
+          </article>
+          <article class="team-card reveal">
+            <div class="team-avatar" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="15" r="8" stroke="#CA8A04" stroke-width="1.5"/>
+                <path d="M6 38c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Luca Fratelli</h3>
+            <span class="team-role">Senior Barber · 14 anni</span>
+            <p>Specialista in fade e texture. Ogni taglio è pensato per la struttura del tuo viso.</p>
+          </article>
+          <article class="team-card reveal">
+            <div class="team-avatar" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="15" r="8" stroke="#CA8A04" stroke-width="1.5"/>
+                <path d="M6 38c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Alessandro Ricci</h3>
+            <span class="team-role">Barber · 8 anni</span>
+            <p>Il più giovane, il più aggiornato sulle tendenze. Preciso come un orologio svizzero.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section-gallery" id="gallery">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Gallery</span>
+          <h2 class="section-title">Il nostro<br/><em>ambiente</em></h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-item--large reveal">
+            <div class="gallery-placeholder"><span>Esterno</span></div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><span>Ingresso</span></div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><span>Postazione 1</span></div>
+          </div>
+          <div class="gallery-item gallery-item--wide reveal">
+            <div class="gallery-placeholder"><span>Sala Principale</span></div>
+          </div>
+          <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><span>Dettagli</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="section-booking" id="booking">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow">Prenota</span>
+          <h2 class="section-title">Riserva il tuo<br/><em>momento</em></h2>
+          <p class="section-desc">Scegli giorno, ora e barbiere. Ti aspettiamo.</p>
+        </div>
+
+        <div class="booking-card reveal">
+          <form class="booking-form" id="bookingForm" novalidate>
+
+            <!-- STEP 1: Servizio -->
+            <div class="form-step active" id="step1">
+              <h3 class="step-title"><span class="step-num" aria-hidden="true">01</span>Scegli il servizio</h3>
+              <div class="service-select-grid" role="radiogroup" aria-label="Servizi disponibili">
+                <label class="service-radio">
+                  <input type="radio" name="service" value="taglio" data-label="Taglio Classico" data-price="€ 35" required />
+                  <span class="service-radio-box">
+                    <strong>Taglio Classico</strong><em>€ 35 · 45 min</em>
+                  </span>
+                </label>
+                <label class="service-radio">
+                  <input type="radio" name="service" value="rasatura" data-label="Rasatura Rasoio" data-price="€ 45" />
+                  <span class="service-radio-box">
+                    <strong>Rasatura Rasoio</strong><em>€ 45 · 60 min</em>
+                  </span>
+                </label>
+                <label class="service-radio">
+                  <input type="radio" name="service" value="taglio-barba" data-label="Taglio + Barba" data-price="€ 70" />
+                  <span class="service-radio-box">
+                    <strong>Taglio + Barba</strong><em>€ 70 · 90 min</em>
+                  </span>
+                </label>
+                <label class="service-radio">
+                  <input type="radio" name="service" value="premium" data-label="Trattamento Premium" data-price="€ 95" />
+                  <span class="service-radio-box">
+                    <strong>Trattamento Premium</strong><em>€ 95 · 90 min</em>
+                  </span>
+                </label>
+              </div>
+              <button type="button" class="btn-next" onclick="bookingNext(1)">
+                Avanti
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- STEP 2: Barbiere + Data -->
+            <div class="form-step" id="step2">
+              <h3 class="step-title"><span class="step-num" aria-hidden="true">02</span>Barbiere e data</h3>
+              <div class="form-group" style="margin-bottom:1.5rem">
+                <label for="barber">Scegli il barbiere</label>
+                <select id="barber" name="barber" required>
+                  <option value="">— Seleziona —</option>
+                  <option value="Marco Fratelli">Marco Fratelli</option>
+                  <option value="Luca Fratelli">Luca Fratelli</option>
+                  <option value="Alessandro Ricci">Alessandro Ricci</option>
+                </select>
+              </div>
+
+              <div class="calendar-wrapper">
+                <div class="calendar-header">
+                  <button type="button" class="cal-nav" id="calPrev" aria-label="Mese precedente">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                  <span class="cal-month" id="calMonth"></span>
+                  <button type="button" class="cal-nav" id="calNext" aria-label="Mese successivo">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                </div>
+                <div class="cal-days-header" aria-hidden="true">
+                  <span>Lun</span><span>Mar</span><span>Mer</span><span>Gio</span><span>Ven</span><span>Sab</span><span>Dom</span>
+                </div>
+                <div class="cal-grid" id="calGrid" role="grid" aria-label="Calendario"></div>
+                <input type="hidden" name="date" id="selectedDate" required />
+              </div>
+
+              <div class="form-nav">
+                <button type="button" class="btn-back" onclick="bookingBack(1)">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M8 6l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Indietro
+                </button>
+                <button type="button" class="btn-next" onclick="bookingNext(2)">
+                  Avanti
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Orario -->
+            <div class="form-step" id="step3">
+              <h3 class="step-title"><span class="step-num" aria-hidden="true">03</span>Scegli l'orario</h3>
+              <div class="time-grid" id="timeGrid" role="radiogroup" aria-label="Orari disponibili"></div>
+              <input type="hidden" name="time" id="selectedTime" required />
+              <div class="form-nav">
+                <button type="button" class="btn-back" onclick="bookingBack(2)">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M8 6l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Indietro
+                </button>
+                <button type="button" class="btn-next" onclick="bookingNext(3)">
+                  Avanti
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 4: Dati -->
+            <div class="form-step" id="step4">
+              <h3 class="step-title"><span class="step-num" aria-hidden="true">04</span>I tuoi dati</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">Nome *</label>
+                  <input type="text" id="fname" name="fname" placeholder="Marco" required autocomplete="given-name" />
+                </div>
+                <div class="form-group">
+                  <label for="lname">Cognome *</label>
+                  <input type="text" id="lname" name="lname" placeholder="Rossi" required autocomplete="family-name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Telefono *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+39 320 000 0000" required autocomplete="tel" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="marco@email.com" autocomplete="email" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="notes">Note (opzionale)</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Preferenze o richieste particolari..."></textarea>
+              </div>
+
+              <div class="booking-summary" id="bookingSummary" aria-live="polite"></div>
+
+              <div class="form-nav">
+                <button type="button" class="btn-back" onclick="bookingBack(3)">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M8 6l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Indietro
+                </button>
+                <button type="submit" class="btn-submit">Conferma Prenotazione</button>
+              </div>
+            </div>
+
+            <!-- CONFERMA -->
+            <div class="form-step" id="stepConfirm">
+              <div class="confirm-screen" aria-live="assertive">
+                <div class="confirm-icon" aria-hidden="true">
+                  <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                    <circle cx="28" cy="28" r="26" stroke="#CA8A04" stroke-width="2"/>
+                    <path d="M16 28l8 8 16-16" stroke="#CA8A04" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Prenotazione confermata!</h3>
+                <p id="confirmText"></p>
+                <button type="button" class="btn-next" onclick="resetBooking()">Nuova prenotazione</button>
+              </div>
+            </div>
+
+          </form>
+
+          <!-- Step indicators -->
+          <div class="step-indicators" aria-label="Progresso prenotazione">
+            <div class="step-dot active"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Barber Fratelli" width="36" height="36" />
+          <span>BARBER FRATELLI</span>
+        </div>
+        <address class="footer-info">
+          <p>Via Montenapoleone 12, Milano</p>
+          <p>Lun–Sab: 9:00–20:00 · Dom: Chiuso</p>
+          <p><a href="tel:+390212345678">+39 02 1234 5678</a></p>
+        </address>
+        <p class="footer-copy">© 2025 Barber Fratelli. Tutti i diritti riservati.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
