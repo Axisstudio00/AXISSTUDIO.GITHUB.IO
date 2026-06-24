@@ -97,12 +97,10 @@ function updateJourney(p) {
     overlay.style.opacity = '0';
   }
 
-  /* Intro label: visibile solo fase 0 */
-  const introVisible = p < 0.08;
+  /* Hero intro: fade out appena lo scroll inizia, canvas prende il sopravvento */
+  const introVisible = p < 0.06;
   introEl.style.opacity = introVisible ? '1' : '0';
-  introEl.style.transform = introVisible
-    ? 'translateX(-50%) translateY(0)'
-    : 'translateX(-50%) translateY(-20px)';
+  introEl.style.pointerEvents = introVisible ? 'auto' : 'none';
 
   /* Phase text */
   if (phase >= 1 && phase <= 4) {
