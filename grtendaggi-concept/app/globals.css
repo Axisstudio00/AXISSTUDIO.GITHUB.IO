@@ -1,0 +1,179 @@
+@import 'tailwindcss';
+
+/* ————————————————————————————————————————————————
+   GRtendaggi Concept — design system
+   Ground: osso · Ink: cioccolato · Accent: verde persiana bolognese
+   ———————————————————————————————————————————————— */
+:root {
+  --bg: #e5e1d8;
+  --paper: #ecebe8;
+  --surface: #dad5ca;
+  --sand: #cdbfa8;
+  --ink: #2a1d17;
+  --muted: #5f5047;
+  --accent: #456f3a;
+  --accent-hover: #3a5f31;
+  --accent-ink: #ffffff;
+  --field: #456f3a;
+  --field-ink: #ffffff;
+  --field-dark: #2a1d17;
+
+  /* Cinque passi tipografici */
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.25rem, 1.4rem + 3.4vw, 4.25rem);
+  --step-display: clamp(3rem, 1rem + 8vw, 9.5rem);
+
+  --margin: clamp(1.25rem, 0.6rem + 2.4vw, 2.5rem);
+  --section: clamp(6rem, 4rem + 8vw, 13rem);
+  --header-h: 4.5rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur: 900ms;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-field: var(--field);
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --font-sans: 'Jost', 'Futura', 'Century Gothic', system-ui, sans-serif;
+  --breakpoint-xs: 30rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--step-body);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img { max-width: 100%; height: auto; }
+  a { text-underline-offset: 0.2em; }
+}
+
+@layer components {
+  .wrap { padding-inline: var(--margin); max-width: 120rem; margin-inline: auto; }
+  .section { padding-block: var(--section); }
+  .t-small { font-size: var(--step-small); line-height: 1.5; }
+  .t-body { font-size: var(--step-body); }
+  .t-lead { font-size: var(--step-lead); line-height: 1.4; }
+  .t-head { font-size: var(--step-head); }
+  .t-display { font-size: var(--step-display); }
+
+  /* Bottoni: rettangoli pieni, angoli vivi, una sola forma su tutto il sito */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
+    min-height: 3.25rem; padding: 0 1.6rem;
+    font-family: var(--font-sans); font-size: 1rem; font-weight: 500; letter-spacing: 0.02em;
+    text-decoration: none; white-space: nowrap;
+    transition: background-color 300ms var(--ease-out), color 300ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { transition: transform 400ms var(--ease-out); }
+  .btn:hover svg { transform: translateX(4px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ink { background: var(--ink); color: var(--paper); }
+  .btn-ink:hover { background: #45322a; }
+  .btn-paper { background: var(--paper); color: var(--ink); }
+  .btn-paper:hover { background: #fff; }
+
+  /* Link testuale con sottolineatura che cresce */
+  .link {
+    text-decoration-line: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 400ms var(--ease-out), text-underline-offset 400ms var(--ease-out);
+  }
+  .link:hover, .link[aria-current='page'] { text-decoration-color: currentColor; text-underline-offset: 0.18em; }
+  .link-strong {
+    text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.3em;
+    transition: text-decoration-color 300ms, text-underline-offset 300ms var(--ease-out);
+  }
+  .link-strong:hover { text-underline-offset: 0.45em; }
+
+  /* Immagini: zoom morbido in hover */
+  .zoom { overflow: hidden; }
+  .zoom img { transition: transform 1400ms var(--ease-out); will-change: transform; }
+  .group:hover .zoom img, .zoom:hover img { transform: scale(1.045); }
+
+  /* Reveal on scroll: visibile di default, animato solo con JS attivo */
+  .js [data-reveal] { opacity: 0; transform: translate3d(0, 24px, 0); }
+  .js [data-reveal].is-in {
+    opacity: 1; transform: none;
+    transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+    transition-delay: var(--d, 0ms);
+  }
+  .js [data-reveal='wipe'] { opacity: 1; transform: none; }
+  .js [data-reveal='wipe'] > img { clip-path: inset(100% 0 0 0); }
+  .js [data-reveal='wipe'].is-in > img {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 1200ms var(--ease-inout), transform 1400ms var(--ease-out);
+    transition-delay: var(--d, 0ms), 0ms;
+  }
+
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
+  .sr-only-focusable:not(:focus) {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+  }
+  .js [data-reveal], .js [data-reveal='wipe'] > img { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: none; }
+}
+.page-enter { animation: page-enter 700ms var(--ease-out) backwards; }
+
+/* Slider dello strumento "Prova la luce" */
+.range { appearance: none; height: 2.75rem; background: transparent; cursor: pointer; }
+.range::-webkit-slider-runnable-track { height: 6px; background: var(--bg); }
+.range::-moz-range-track { height: 6px; background: var(--bg); }
+.range::-webkit-slider-thumb { appearance: none; width: 26px; height: 26px; margin-top: -10px; background: var(--ink); border-radius: 50%; transition: transform 200ms var(--ease-out); }
+.range::-moz-range-thumb { width: 26px; height: 26px; border: 0; background: var(--ink); border-radius: 50%; }
+.range:active::-webkit-slider-thumb { transform: scale(1.15); }
+.range:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Testi legali */
+.legal h2 { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 500; letter-spacing: 0; line-height: 1.3; margin-top: 2.75rem; }
+.legal p, .legal ul { margin-top: 1rem; max-width: 68ch; }
+.legal ul { list-style: disc; padding-left: 1.25rem; }
+.legal li + li { margin-top: 0.4rem; }
+.legal a { text-decoration: underline; text-underline-offset: 0.2em; }

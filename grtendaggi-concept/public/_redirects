@@ -1,0 +1,20 @@
+# Reindirizzamenti dal sito attuale (URL ritrovati nell'indice dei motori di ricerca).
+# Prima della messa online: esportare l'elenco completo degli URL del vecchio sito
+# (sitemap WordPress o Search Console) e completare questa tabella.
+/servizi              /soluzioni/                                 301
+/servizi/*            /soluzioni/                                 301
+/tende-interne-darredo/*                       /soluzioni/tende-interne-arredo/  301
+/tende-interne-darredo                         /soluzioni/tende-interne-arredo/  301
+/tende-tecniche/*                              /soluzioni/tende-tecniche/        301
+/tende-tecniche                                /soluzioni/tende-tecniche/        301
+/zanzariere/*                                  /soluzioni/zanzariere/            301
+/zanzariere                                    /soluzioni/zanzariere/            301
+/veneziane-disponibili-in-50mm-25mm-e-16mm/*   /soluzioni/veneziane/             301
+/veneziane-disponibili-in-50mm-25mm-e-16mm     /soluzioni/veneziane/             301
+/tappezzeria-in-generale-imbottitura-e-rivestimento/*  /soluzioni/tappezzeria/   301
+/tappezzeria-in-generale-imbottitura-e-rivestimento    /soluzioni/tappezzeria/   301
+# Ipotesi da verificare sul vecchio sito:
+/galleria             /realizzazioni/                             301
+/galleria/*           /realizzazioni/                             301
+/privacy-policy/*     /privacy/                                   301
+/cookie-policy/*      /cookie/                                    301
