@@ -1,0 +1,251 @@
+{
+  "living-velo-controluce": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRgoBAABXRUJQVlA4IP4AAAAQBgCdASoYAB4APu1oq08ppiOiMBgIATAdiUAVw+YyDuNGkWEt3HKSZZw/lxfVoVUGNr55e7XRogAAoKN7L5HE95SizLuEq3QukBSRtrctNTQbQhtVxEztKGiCzCAFBkMSwAW0DeIqlUXxhYIyLhhWlaXXrYf0PefSpXKsfBBeecZjo7xj0U0tEG4qDOcNijerXEOgVU22FbuDt5G5gYYMc1emmozCSMaFj93bI4pbOgEIwe5eTj7uBugjF+UVS5km0+y2TpAP6OlTb7iG1+X99p8iJ8Q6CUpPyvXcYIXmmWm6OEld160tw++b0CkcipS2E3ifyivjNdQGXs/gAA==",
+    "color": "rgb(152 120 88)"
+  },
+  "living-vista-lago": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4IPoAAACQBgCdASoYAB4APu1kq0+ppSOiMBgIATAdiUATpmFMVXpAFmmd5s7Xtp56SDcQQhFzCFO1y60BzKIKg2IAAPzjhec0Q4638Uwu1ZQVRBEFNt1yhrlOt1WbsqdcZKAVbug79O4LSmg5ZqQFKTWALUb6TNXgFaktE9vBpRX36m1XCizHX9wWBcO6LO4cm1H7iAuQfAG1lMlECQzJxcN3R+XUBIEbRrD/fg9fH/UZZZsUtMnchnz7arvcTZHxSU3qdncBVMim4RAovV6B+uf5/KRQJBvsnx1ONZMLk9nU2wKG1ZgGNbJbjA1rrM5uoe1cxIF+xHbCTFyzAAAA",
+    "color": "rgb(152 120 88)"
+  },
+  "terrazza-pergola-tramonto": {
+    "width": 1536,
+    "height": 864,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAABQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZgCw7CFBvmOhhf8cgYTQAFoAAP6xdmK3fnp2HrX1IHCznE+OP5SOym/xbW1g+ZP5DeMjXkCby7sij5T4Sz7C51XP8GrrqMTQm+u19JxaQb0AozyphMcyvOjvgd3zrNvP8k0w5uim/XqBhrumblR9KenZCyQOAxGyhBKLaIYraOHGhGR9AFaXsAA=",
+    "color": "rgb(248 216 168)"
+  },
+  "living-tramonto-vetrate": {
+    "width": 1536,
+    "height": 864,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZgCdMoR3ACHhGKj/ubJKaruiAAD54AhuLSrMuBIzKJt2z1Fq8GhdJNnsHh2ls0xph4R2mjg1xZdGX6xHJaXF56CH6PRJJeD3TGR6hCr027Ri7+d29Emqio+3ALdytARu/4bU/oX4O92ooBsLmKWO4FVAmEZ8IdYOfoTwvMElfwoekbwuAAAA",
+    "color": "rgb(168 120 88)"
+  },
+  "living-tende-filtranti": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgMYxdmMCz5eTM1otHdcAA/gjBsFiEsE2LGJVBKebfW5Rf6IDYrsCZkNITb6RLuABUUNdSS60lUTS3bbdQMVx01fQNvowAhAeNmBNJOZV/fpQ6HgJwjG1pltDb75IlI+kj7zokItzsKpUVWM518KvP9XSOWqK8Akk8uAAAAA==",
+    "color": "rgb(168 120 88)"
+  },
+  "ristorante-tende-tecniche": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOmUAnAAm46W7SIAdFqLAwIgAD+0OUxf/bxUdolVyvCosw/2UKnL6s4H2deL5hD7Z7MFAPkVVnblCCWlywAvCQYCYjkI/fZ4AjerTwuCfeYVYQiCYPnGi99aYt4XPeRrXPrTTMt5dmOuojDTJR4Ni048TDWkH6Gung+M3kTXlIQBY8wQAAA",
+    "color": "rgb(120 88 56)"
+  },
+  "living-doppia-altezza": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYgCdL1yBhmOpWtMuBWPmfCAA/nXETbI0/miZHTQ4jDf8NX/l4/5h12jeVZXtVBLYj/9jF0yI48L08sdc4X4jM4gUcWyRa2D39QMJvWl0D/A+Ink2MO0+fi3xDvZ1Ntqk/zu2UvgSluz2uHiZdtytVL/tJt0wKRw1+oSX+8LcaRsgnfQbPNJppO4QLmlM1aQuDQAA",
+    "color": "rgb(120 88 56)"
+  },
+  "living-panoramico-tramonto": {
+    "width": 1536,
+    "height": 864,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOmUAnABAJVc/nJViH4YY+s4AD+qRLWaQVHDVU2xuQRC0eJJy7Dp7VfKsIK1P346kfV0SD0jfMak4RCDd0hzwbKw1K53tIzpkj8ZGJq9c5H22f0RtGR+2O8FqL8/6/7Lfs7hFNFq73N5q3vQAKxSBk167NquV6z9AAA",
+    "color": "rgb(168 136 104)"
+  },
+  "living-pergola-piscina": {
+    "width": 1536,
+    "height": 864,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZACdMoR4GB6jbKvG5l8eMG78m1gAAP6CXfuqkg6tnW+fKvD3Ck8dBInwp54aLepLl1pvv61NG24pVcxAWg7NOkeOt/Ga+8Lx9UmFPsR1wP7DRSDfqBlG7Zaewird3X38UeOSDT9pOKFpyJc5nA9X/sbl8Ay+XpMfSuPVYymFkO9wcBs/3zhDyEkVQ8wtKY1AAA==",
+    "color": "rgb(248 248 248)"
+  },
+  "camera-velo-oscurante": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4IPoAAABQBgCdASoYAB4APu1sqlEppaOiqAqpMB2JQBOgZhN1AlDpBble23C1rUai7j2141zF+fDXykR+BLN/gAD+zgWrNZaUzpCRUONGD82cfV7OfycekF9rPN67xRBK2vbF1EWfBb/No0Ow5Nr2XKvWiNk2USv2GH8ke1KopWIPVWUWHaPEGBbHE+TfsqZgzqyYmGoQBwQZ3NuMTT5LPWC5Ls9JNQaGiWTPJZe2x2XiYMXy7ql9JCZMmRS+bTS1d+0OkN720Yy8Mm1d9NYpMj+5jtKgXdbxjILXpr8ouaZBAnFvdVKWSvK3WbfKhERPvKaU2zVX5zVHfo8KNeAA",
+    "color": "rgb(104 72 56)"
+  },
+  "living-velo-colline": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRhoBAABXRUJQVlA4IA4BAABwBQCdASoYAB4APu1kqk2ppaQiMAgBMB2JQBOg3gHLzOKv75BYWYcK52jqv1RBdk9zF92AAOtYUa3NlPA7hEsSMKyETzCKUYyjQnCnMKFhWT+wPS7aVChjr7688/76ZMGucpDhL1VkOk39N1hC/qRRKAse2NvEQuxOy6fqgZjn8vPZYGAWu5aJKnnpdnC1HlxEPaTYac6f/hDaA3LDm11h+OZVDZqRiVzfcDh+KWV4FouY3Ww4HWAnSA7+8vvBIt2nsJTXCEha+csrKfWBS3WhqMqMf4o+xcTIkCJ/O47OfqBOcYOz6kGIf3v6En/33OaR9LvQzlnkcGEL825ttD2WfA+IsR021FbLpoQYwAA=",
+    "color": "rgb(152 120 88)"
+  },
+  "campionario-tessuti": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      768,
+      1080,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRgwBAABXRUJQVlA4IAABAACwBQCdASoYABgAPu1sqlEppaOiqAqpMB2JQAB8mRl3yxIAK3DNmdnio317Jj7cOY7AY2tk5gAA+QrdxxIKkZLuCLU3p1n09TePrdJgEuxESshULI9S1itdwIRZ13uAEENcapOyS9R+omxLe4fswXX/JP1Xd/weHRb2S4HN3bQOzPnB6BWfJfnIjFvQxnrbLrWZtSTRRfJGDwGLHfTAy+91DYGXUufisHmIn7HcuwDjmfH+BgmmVPIRthmlBMMnRdHvnWdih1jxdU1d6SNzs+q7h+npAOpPdD7K0gX/FZqjjD+djEyUbQOhLdm1m4vyTIySTpLNRSLpkIv9Y1do+AAA",
+    "color": "rgb(8 8 8)"
+  },
+  "trama-lino-macro": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      768,
+      1080,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4IOgAAACwBQCdASoYABgAPu1urlIppiQiqAgBMB2JYwAGaBVORLedCJ2IfjNrUV1T3t7d+6HAzXUw7IAA/mAXUtLWcvPkuErB/8pyLQbe6igayUaZDadU4ZJKZR1DLIB4e65iYO+FRQPQOyo4DZln/z7xRQL52PfSvxZJMtn6hyugMfxNbNQOAFG+227ubddGWVB1HbiD4HDtdiXasFhZWCAv1FAnTcToIBY3/b0fDvegM/a4BQzbZVvMadVedhR4O4TNeorcA73REbUqLO5N+txgukm2+T/fXLrEQEmEBt0lhlg8byvIA4MUgAAA",
+    "color": "rgb(152 120 88)"
+  },
+  "binario-tenda-dettaglio": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      768,
+      1080,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4IL4AAABQBQCdASoYABgAPu1oqk+ppaOiKA1RMB2JQBdkHNRgAHgOhfgQPgJEOv202/BktjE+1gAA9ymkKk18ywwfzdhGB0NaX74GpT1RqK5YZaxvPGBRRBq8NFR9pPzK11hsYTSMBKvTR+Gz5jsKpQX+EQCbt6vKB1M0MmYtEnR1K4gvBSPXZUV1ibZIbuDn6gR2gXhTC+WYHa1wdOgOY6l6hQGdajD295VTGfIxdsSt5nOsJj9csL0tEMBXT00eYAAA",
+    "color": "rgb(184 136 104)"
+  },
+  "tenda-da-sole-terrazza": {
+    "width": 1536,
+    "height": 864,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAACQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZACdMoMYBsADI6C9ucIpIUnbJgAA/kBSYKbT+muOz5XTQwE/TldjPF0dWpBkt52LqW8/RZPprttQ9UBu8vOnd7alcauhYp7lcd5sCWlGnd0RUtjNXZSZ8313g9N3vezt6kG5Mw4oSQwQIVRKNnJ8XMWGs/wGGJaUsRnfEftT7ir8KUEOTT+Y0mDzqeAAAAA=",
+    "color": "rgb(200 152 104)"
+  },
+  "pergola-bioclimatica": {
+    "width": 1536,
+    "height": 864,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1536
+    ],
+    "blur": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JaACdMoADaDe9eX0EsUp6j41rwADifMN69W5ExfTX8NSIyFOiXYnE/W0xZ0SLcP66Y6027t4LJX9yrzeVkZadYRL0wYr/Fuy/BK1pVQ6h4G+1/Cbgqe2XlD27coQtlB02e7EGQIiBaLr8mD1HkCQkGHUisXfVI9nVoQkKqnHRcjnWwkujruTIsOdUvsGVdPMJDQjzd2MuAfQMAAA=",
+    "color": "rgb(56 56 56)"
+  },
+  "zanzariera-scorrevole": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRhQBAABXRUJQVlA4IAgBAAAQBgCdASoYAB4APu1qqU8ppiOiMBgIATAdiWQAnTOQb/6l4+aQpSCOfDwiUNUCBgvWRfVUmTh26dAA9h7deoOFYicgZv3Zkn8NMEE9Ja3d70fCYXQ6SfNdKfjoD+h6KlTMhX3eLYvAy0BV1xnLci3oPaT/VjHutbFzQj9Vn6O6JJEJ8MvuYj8Tou0kq4nBn9fw8T8uOFouk4fz+t+ytvSetC4WoPVmOhvyU+nsmPyQZWn78T3hui8QpI8HVgwPvSK/nrOG4vgWct0+v38jMAWykmncaLGLqX+askfggM+oStsE0iV5miOo3lFFgEO6HnG1fkrabn+qdYOdLiUiVZG91ZlZKR5idAA=",
+    "color": "rgb(168 200 232)"
+  },
+  "tapparella-avvolgibile": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRiQBAABXRUJQVlA4IBgBAAAwBwCdASoYAB4APu1gq1AppKOisBgIATAdiUATplCAglzdMDLA0gTRxLYMq6Rj7NDaqjLt49VavqXpH6T1FuctLNgA/kEXmXiwzg61ZqYr6Z4SCZl5idzIUl/O8ti2iXPBG7/a6yXwTS+kWyVKFKKdZ1fpR1nqsY9OMuid0TllKy0VR3fhnxz5SP5xbTXkILcbRYAmE2o2IsOHlini5qu1zrKIX1dLBleMA/bSJUzolnifKB+TFg1P0FhrNk43g8RH/HZ4PJUPoN6vvyp8SCEq9W+No9z6C10va9W6LU+o+1s4kbf+XbVlN5D48yGhwEFyM2j1jAJXq6t471PFZh//ZvLelZ4tb4f5YxsOAU5IRWtXHKXMagAA",
+    "color": "rgb(56 56 56)"
+  },
+  "camera-filtrante": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAADwBQCdASoYAB4APu1qrFCppaQiqAqpMB2JQBBeJkwWlNpd9b56TdZrIX1mdnn8zYbsT0LlNkB6sAD+7FlgvgOiqF5WfKZdBIxvnYgBX+E+TxON8wyLZxaxTZphyX/RnMnP8C0EjRJ7kpI3PSD4lURB4bC7ucUH1Rfo/7pBf9ljmQ5zmDnSnc7+uz8rMCUqjoLCDEeMIKKoRs/jnHEkZIrN7dHC/ffPitOvCt7zPWLJdYKKum2vrGo75AdnC0GHPBzbU/Lk4Yh+ltK3sex9rKG6GwyClHv1CUq1ijHbWC+I6FaAAAA=",
+    "color": "rgb(104 72 56)"
+  },
+  "camera-oscurante": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      768,
+      1080,
+      1122
+    ],
+    "blur": "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAAAwBQCdASoYAB4APu1ur1IppiQiqAgBMB2JQBadCub5xtWBzQdS6O1wN65b4Lr8M/VN2AD+8ulzF05Oj/vvgyAPXBkmNZj/JD7fJvN9QI3vS1yAUGu9KYLva6EY6n1Ry4OtX7SP0JaX60eiVspnEaOAEzozRvxBJcYNwSqIUmp0niTWJ9z2FsOfHDcNCvYuR0Z4KauYCCZ9Z09N589NlREdFuzrP2KvWWrpSdtuDrgdbhateWgopPtggAA=",
+    "color": "rgb(104 72 56)"
+  }
+}
