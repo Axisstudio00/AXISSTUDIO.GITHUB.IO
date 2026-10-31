@@ -52,9 +52,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// Runs before first paint. Arms the scroll reveals and, on a first homepage visit in this session,
-// the curtain intro; both fall back to the plain page if the app script never starts.
-const armMotion = `(function(){try{var d=document.documentElement;if(!window.matchMedia('(prefers-reduced-motion: no-preference)').matches)return;d.classList.add('motion-armed');setTimeout(function(){if(!d.classList.contains('motion-ready'))d.classList.remove('motion-armed')},3500);var seen=false;try{seen=sessionStorage.getItem('grtc-intro')==='1'}catch(e){}if(location.pathname==='/'&&!seen){d.classList.add('intro-armed');setTimeout(function(){if(!d.classList.contains('intro-started')){d.classList.add('intro-fallback','intro-done');d.classList.remove('intro-armed')}},4000)}}catch(e){}})();`;
+// Runs before first paint: arms the scroll reveals, and falls back to the plain page if the app script never starts.
+const armMotion = `(function(){try{var d=document.documentElement;if(!window.matchMedia('(prefers-reduced-motion: no-preference)').matches)return;d.classList.add('motion-armed');setTimeout(function(){if(!d.classList.contains('motion-ready'))d.classList.remove('motion-armed')},3500)}catch(e){}})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

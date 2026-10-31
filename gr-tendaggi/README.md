@@ -95,38 +95,30 @@ mai come lavori eseguiti.
 | 16 | pergola-bioclimatica (16:9) | Copertura a lamelle | Soluzioni, scena outdoor, hero Outdoor |
 | 17 | zanzariera-scorrevole (4:5) | Zanzariera scorrevole | Soluzioni, Ispirazioni, hero Zanzariere |
 | 18 | tapparella-avvolgibile (4:5) | Tapparella avvolgibile | Ispirazioni, Schermature |
+| 19 | camera-filtrante (4:5) | Stessa camera della 10 con tende filtranti (fornita dal cliente) | Simulatore "Quanta luce?" |
+| 20 | camera-oscurante (4:5) | Stessa camera della 10 con tende oscuranti (fornita dal cliente) | Simulatore "Quanta luce?" |
 
-**Asset derivati** (`assets/derived`, generati da `scripts/derived-assets.mjs` a partire dagli originali, che
-restano intatti):
+In homepage: hero 08; capitoli 05, 15, 16, 17, 06 + 18; material experience 01 → 13 → 12; simulatore 10, 19, 20;
+ispirazioni 04, 18, 07, 01, 09, 17; consulenza 09.
 
-| File | Origine | Uso |
-| --- | --- | --- |
-| tenda-intro-velo | ritaglio dei veli dell'immagine 11 | Tende dell'intro, desktop |
-| tenda-intro-velo-stretto | ritaglio del velo dell'immagine 01 | Tende dell'intro, mobile |
-| camera-filtrante | immagine 10 + un secondo velo più fitto sulla vetrata | Simulatore, stato Filtrante |
-| camera-oscurante | immagine 10 + il tendaggio opaco della stessa stanza sulla vetrata, luce dalla finestra ridotta, lampada accesa | Simulatore, stato Oscurante |
+## Esperienza della homepage
 
-## Intro della homepage
+- **Hero** — visibile dal primo frame (ingresso in CSS, senza attendere JavaScript), con un movimento di camera
+  lentissimo sulla fotografia. Al primo scroll il titolo sale e svanisce mentre la foto si ritira in una
+  cornice e compare l'apertura del manifesto: uno schermo sticky dentro un contenitore alto, senza pin GSAP.
+- **Capitoli prodotto** — cinque composizioni diverse (espansione a tutto schermo, wipe laterale, apertura
+  circolare, ritratto in parallasse, due foto a profondità diverse) e un indicatore di avanzamento nel margine
+  destro con link ai capitoli.
+- **Material experience** — la camera entra nel velo controluce, la trama del lino prende lo schermo, compare la
+  frase, poi un'apertura circolare rivela il campionario.
+- **Quanta luce?** — tre fotografie della stessa camera fornite dal cliente (velo, filtrante, oscurante) in
+  crossfade sotto uno slider su misura (`role="slider"`: trascinamento con mouse, penna e touch, frecce,
+  PagSu/PagGiù, Home/Fine, tre indicatori con il campione del tessuto). Sono rappresentazioni illustrative.
+- **Movimento ridotto** — con `prefers-reduced-motion` gli stage si compattano e tutti i contenuti restano
+  visibili senza animazioni; se il JavaScript non parte, lo stesso vale dopo 3,5 s.
 
-Alla prima apertura della homepage in una sessione, due pannelli di velo (texture fotografica, pieghe, ombra
-sul bordo e sull'orlo) coprono la foto; una GSAP Timeline li apre verso i lati mentre la stanza si schiarisce,
-poi entrano titolo, sottotitolo, CTA e navigazione (circa 3 s su desktop, 2,3 s su mobile, con pannelli singoli
-e texture più leggera).
-
-- Lo script inline in `layout.tsx` arma l'intro prima del primo frame, quindi non c'è flash della pagina sotto.
-- Non si ripete nella stessa sessione (`sessionStorage`), né nella navigazione interna.
-- Si salta con il pulsante "Salta l'introduzione", con un tasto qualsiasi, con la rotella o con lo scroll touch.
-- Con `prefers-reduced-motion` non parte.
-- Se il JavaScript non parte, dopo 4 s le tende si aprono comunque via CSS.
-
-## Simulatore "Quanta luce?"
-
-Tre stati della stessa fotografia (Velo = originale, Filtrante, Oscurante) sovrapposti e sfumati con l'opacità
-in base al cursore: geometria, arredi e inquadratura non cambiano, varia solo la vetrata con il suo tessuto e
-la luce che entra. È una simulazione indicativa costruita su un'unica fotografia generata, ed è dichiarata come
-tale sul sito. Per una resa fotorealistica servono tre scatti reali della stessa stanza, da treppiede e con la
-stessa esposizione, con velo, filtrante e oscurante montati (oppure tre render della stessa scena). Basta
-sostituire i tre file in `assets/originals` e `assets/derived` mantenendo i nomi.
+Tutte le animazioni di scroll usano GSAP + ScrollTrigger (caricati dopo il primo rendering) con transform,
+opacity e clip-path; le microinterazioni sono in CSS.
 
 ## Da verificare con l'azienda prima della pubblicazione
 

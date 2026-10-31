@@ -5,7 +5,7 @@ import path from "node:path";
 import sharp from "sharp";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const srcDirs = [path.join(root, "assets/originals"), path.join(root, "assets/derived")];
+const srcDirs = [path.join(root, "assets/originals")];
 const outDir = path.join(root, "public/images");
 const manifestPath = path.join(root, "src/data/images.generated.json");
 const TARGET_WIDTHS = [480, 768, 1080, 1440, 1920];

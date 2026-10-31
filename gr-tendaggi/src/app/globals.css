@@ -145,55 +145,67 @@
     transform: translateX(4px);
   }
 
-  @media (min-width: 1024px) {
-    .band-panel {
-      flex-grow: var(--grow);
-      transition: flex-grow 700ms var(--ease-out);
-    }
-    .band-panel:hover,
-    .band-panel:focus-within {
-      flex-grow: 6;
-    }
+  /* Links that draw their line on hover and focus. */
+  .link-reveal {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 6px;
   }
-  .light-range {
-    appearance: none;
-    height: 2.75rem;
-    background: transparent;
+  .link-reveal::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px; /* taste-skill-ignore: link underline */
+    background: currentColor;
+    transform: scaleX(0.3);
+    transform-origin: left;
+    transition: transform 700ms var(--ease-out);
   }
-  .light-range::-webkit-slider-runnable-track {
-    height: 4px;
-    background: var(--color-charcoal);
+  .link-reveal:hover::after,
+  .link-reveal:focus-visible::after {
+    transform: scaleX(1);
   }
-  .light-range::-moz-range-track {
-    height: 4px;
-    background: var(--color-charcoal);
+  .link-reveal .link-arrow {
+    transition: transform 500ms var(--ease-out);
   }
-  .light-range::-webkit-slider-thumb {
-    appearance: none;
-    width: 28px;
-    height: 28px;
-    margin-top: -12px;
-    border-radius: 9999px;
-    background: var(--color-bronze);
-    border: 3px solid var(--color-warm);
-    transition: transform 160ms var(--ease-out);
-  }
-  .light-range::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
-    border-radius: 9999px;
-    background: var(--color-bronze);
-    border: 3px solid var(--color-warm);
-  }
-  .light-range:active::-webkit-slider-thumb {
-    transform: scale(1.15);
+  .link-reveal:hover .link-arrow {
+    transform: translateX(6px);
   }
 
-  .band-img {
-    transition: transform 1200ms var(--ease-out);
+  /* Photographs answer the pointer with a slow push-in and a touch more light. */
+  .photo-hover img {
+    transition:
+      transform 1400ms var(--ease-out),
+      filter 900ms ease;
   }
-  .band-panel:hover .band-img {
-    transform: scale(1.04);
+  @media (hover: hover) {
+    .photo-hover:hover img {
+      transform: scale(1.035);
+      filter: brightness(1.05);
+    }
+  }
+
+  /* Material experience: a soft light veil keeps the line legible on the weave; the next photograph starts closed. */
+  .mx-veil {
+    background: linear-gradient(to right, rgb(248 246 242 / 0.82), rgb(248 246 242 / 0.35) 55%, rgb(248 246 242 / 0)); /* taste-skill-ignore: neutral scrim over photograph */
+  }
+  @media (max-width: 767px) {
+    .mx-veil {
+      background: linear-gradient(to top, rgb(248 246 242 / 0.86), rgb(248 246 242 / 0.4) 50%, rgb(248 246 242 / 0)); /* taste-skill-ignore: neutral scrim over photograph */
+    }
+  }
+  .mx-next {
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  /* Custom light slider: focus shows on the thumb. */
+  .ls-track:focus-visible .ls-thumb {
+    outline: 2px solid var(--color-charcoal);
+    outline-offset: 4px;
   }
 
   .scrim-bottom {
@@ -214,14 +226,6 @@
       );
     }
   }
-  .scrim-top-strong {
-    background: linear-gradient( /* taste-skill-ignore: neutral scrim over photograph */
-      /* taste-skill-ignore: neutral scrim over photograph */ to bottom,
-      rgb(28 27 24 / 0.86),
-      rgb(28 27 24 / 0.55) 50%,
-      rgb(28 27 24 / 0)
-    );
-  }
   .scrim-top {
     background: linear-gradient( /* taste-skill-ignore: neutral scrim over photograph */
       /* taste-skill-ignore: neutral scrim over photograph */ to bottom,
@@ -241,190 +245,88 @@ html.motion-armed [data-line] > span {
 
 /* Hero entrance runs in CSS from the first frame, without waiting for hydration. */
 @media (prefers-reduced-motion: no-preference) {
-  [data-hero-line] > span {
-    animation: hero-rise 1.3s var(--ease-expo) 0.15s both;
+  [data-hero-line] > span,
+  [data-hero-word] > span {
+    animation: hero-rise 1.25s var(--ease-expo) both;
+    animation-delay: var(--delay, 0.15s);
   }
   [data-hero-line] + [data-hero-line] > span {
     animation-delay: 0.27s;
   }
-  [data-hero-media] {
-    animation: hero-settle 2.8s var(--ease-expo) both;
+  [data-hero-fade] {
+    animation: hero-fade 1s var(--ease-expo) both;
+    animation-delay: var(--delay, 0.7s);
+  }
+  [data-hero-settle] {
+    animation: hero-settle 2.6s var(--ease-expo) both;
+  }
+  /* The slow, almost imperceptible camera move of the hero photograph. */
+  [data-hero-drift] {
+    animation: hero-drift 24s ease-in-out infinite alternate;
   }
 }
 @keyframes hero-rise {
   from {
-    transform: translateY(105%);
+    transform: translateY(108%);
   }
   to {
+    transform: none;
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
     transform: none;
   }
 }
 @keyframes hero-settle {
   from {
-    transform: scale(1.14);
+    transform: scale(1.12);
   }
   to {
     transform: none;
   }
 }
-html.motion-armed [data-clip] {
-  clip-path: inset(100% 0 0 0);
+@keyframes hero-drift {
+  from {
+    transform: scale(1.03) translate3d(-0.6%, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(0.8%, -0.6%, 0);
+  }
 }
 
-/* ------------------------------------------------------------------ Curtain intro (homepage, once per session)
-   html.intro-armed is set by the inline head script before first paint, so the curtains are closed from
-   the very first frame; the GSAP timeline in Hero opens them. html.intro-fallback opens them with CSS if
-   the script never starts. Transforms and opacity only. */
-.intro {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
+/* Scroll stages: tall wrappers with a sticky screen. Without motion they collapse to plain content. */
+.stage-copy-motion {
   display: none;
-  overflow: hidden;
-  pointer-events: none;
 }
-html.intro-armed .intro,
-html.intro-fallback .intro {
+html.motion-armed .stage-copy-motion {
   display: block;
 }
-.intro-dim {
+/* With motion the opening line is shown by the hero stage; the section keeps it for assistive tech only. */
+html.motion-armed .stage-copy-static {
   position: absolute;
-  inset: 0;
-  background: var(--color-night);
-  opacity: 0.5;
+  width: 1px;
+  height: 1px; /* taste-skill-ignore: visually hidden text, not a rule */
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
-.intro-glow {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  mix-blend-mode: screen;
-  background: radial-gradient( /* taste-skill-ignore: light through the window (intro) */
-    /* taste-skill-ignore: light through the window */ 60% 70% at 58% 45%,
-    rgb(255 226 182 / 0.55),
-    rgb(255 226 182 / 0) 70%
-  );
-}
-.curtain {
-  position: absolute;
-  top: -2%;
-  bottom: -2%;
-  width: 53%;
-  backface-visibility: hidden;
-  will-change: transform;
-}
-.curtain-left {
-  left: 0;
-  transform-origin: 0% 50%;
-}
-.curtain-right {
-  right: 0;
-  transform-origin: 100% 50%;
-}
-.curtain-back {
-  width: 57%;
-  opacity: 0.55;
-}
-.curtain-fabric,
-.curtain-folds,
-.curtain-shade {
-  position: absolute;
-  inset: 0;
-}
-/* Photographic sheer cut from the project's own pictures; the base colour stands in until it loads. */
-.curtain-fabric {
-  background: #e7dccb url("/images/tenda-intro-velo-470.webp") center / cover no-repeat;
-  opacity: 0.94;
-}
-.curtain-right .curtain-fabric {
-  transform: scaleX(-1);
-}
-.curtain-back .curtain-fabric {
-  background-position: 30% 50%;
-}
-/* Irregular pleats layered over the photo, so the folds bunch as the panel gathers. */
-.curtain-folds {
-  mix-blend-mode: multiply;
-  background:
-    repeating-linear-gradient( /* taste-skill-ignore: fabric pleats (intro curtain) */
-      /* taste-skill-ignore: fabric pleats */ 90deg,
-      rgb(70 52 36 / 0) 0px,
-      rgb(70 52 36 / 0.16) 22px,
-      rgb(255 246 232 / 0.06) 41px,
-      rgb(70 52 36 / 0.1) 63px,
-      rgb(70 52 36 / 0) 84px
-    ),
-    repeating-linear-gradient(90deg, rgb(40 30 20 / 0) 0px, rgb(40 30 20 / 0.08) 47px, rgb(40 30 20 / 0) 131px); /* taste-skill-ignore: fabric pleats (intro curtain) */
-}
-/* Depth: darker leading edge, a soft cast shade on the room, a heavier hem. */
-.curtain-left .curtain-shade {
-  background:
-    linear-gradient(/* taste-skill-ignore: fabric shading */ to left, rgb(28 27 24 / 0.3), rgb(28 27 24 / 0) 16%),
-    linear-gradient(to top, rgb(28 27 24 / 0.28), rgb(28 27 24 / 0) 14%); /* taste-skill-ignore: fabric hem shading (intro curtain) */
-}
-.curtain-right .curtain-shade {
-  background:
-    linear-gradient(/* taste-skill-ignore: fabric shading */ to right, rgb(28 27 24 / 0.3), rgb(28 27 24 / 0) 16%),
-    linear-gradient(to top, rgb(28 27 24 / 0.28), rgb(28 27 24 / 0) 14%); /* taste-skill-ignore: fabric hem shading (intro curtain) */
-}
-.curtain-front::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 56px;
-}
-.curtain-left.curtain-front::after {
-  right: -56px;
-  background: linear-gradient(/* taste-skill-ignore: cast shadow */ to right, rgb(28 27 24 / 0.26), rgb(28 27 24 / 0));
-}
-.curtain-right.curtain-front::after {
-  left: -56px;
-  background: linear-gradient(/* taste-skill-ignore: cast shadow */ to left, rgb(28 27 24 / 0.26), rgb(28 27 24 / 0));
-}
-@media (max-width: 767px) {
-  .curtain-fabric {
-    background-image: url("/images/tenda-intro-velo-stretto-330.webp");
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    height: auto !important;
   }
-  .curtain-back,
-  .intro-glow {
-    display: none;
+  .stage-screen {
+    position: relative !important;
   }
 }
-.intro-skip {
-  display: none;
-}
-html.intro-armed .intro-skip {
-  display: inline-flex;
-}
 
-/* While the curtains are closed the title, the copy below it and the navigation wait. */
-html.intro-armed [data-hero-line] > span {
-  animation: none;
-  transform: translateY(105%);
-}
-html.intro-armed [data-hero-media],
-html.intro-done [data-hero-media],
-html.intro-done [data-hero-line] > span {
-  animation: none;
-}
-html.intro-armed [data-intro-fade],
-html.intro-armed [data-site-header] {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Fallback when the timeline never starts: the curtains open with CSS alone. */
-html.intro-fallback .curtain-left {
-  transform: translateX(-102%) scaleX(0.6);
-  transition: transform 1.2s var(--ease-in-out);
-}
-html.intro-fallback .curtain-right {
-  transform: translateX(102%) scaleX(0.6);
-  transition: transform 1.2s var(--ease-in-out);
-}
-html.intro-fallback .intro-dim {
-  opacity: 0;
-  transition: opacity 1.2s ease;
+html.motion-armed [data-clip] {
+  clip-path: inset(100% 0 0 0);
 }
 
 @keyframes stepin {
@@ -461,14 +363,11 @@ html.intro-fallback .intro-dim {
   html {
     scroll-behavior: auto;
   }
-  .band-img,
   .btn .btn-arrow,
-  .light-range::-webkit-slider-thumb {
+  .link-reveal .link-arrow,
+  .photo-hover img {
     transition: none !important;
     transform: none !important;
-  }
-  .band-panel {
-    transition: none !important;
   }
   .btn:active {
     transform: none;

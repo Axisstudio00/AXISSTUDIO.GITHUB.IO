@@ -74,17 +74,15 @@ export const images = {
     slug: "tapparella-avvolgibile",
     alt: "Tapparella avvolgibile scura parzialmente abbassata su una vetrata del soggiorno",
   },
-  // Derived from cameraVelo (assets/derived, scripts/derived-assets.mjs): same room, other fabrics.
+  // Same room and framing as cameraVelo, with the other two fabrics (supplied by the client).
   cameraFiltrante: {
     slug: "camera-filtrante",
-    alt: "La stessa camera con una tenda filtrante davanti alla vetrata: luce diffusa e panorama attenuato",
+    alt: "La stessa camera con tende filtranti: luce calda e diffusa, panorama al tramonto attenuato",
   },
   cameraOscurante: {
     slug: "camera-oscurante",
-    alt: "La stessa camera con una tenda oscurante chiusa: vista coperta, luce dalla finestra ridotta, lampada accesa",
+    alt: "La stessa camera con tende oscuranti chiuse: luce della finestra quasi del tutto schermata, uno spiraglio sul tramonto",
   },
-  tendaIntro: { slug: "tenda-intro-velo", alt: "" },
-  tendaIntroStretta: { slug: "tenda-intro-velo-stretto", alt: "" },
 } as const;
 
 export type ImageId = keyof typeof images;
