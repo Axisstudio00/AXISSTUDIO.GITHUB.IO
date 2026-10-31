@@ -36,8 +36,25 @@ uno store condiviso (es. Upstash Redis).
 ## Deploy
 
 Il sito usa una route API server-side, quindi **non può girare su GitHub Pages** (solo file statici).
-Va pubblicato su un hosting Node/Next.js, per esempio Vercel: importare il repository, impostare
-*Root Directory* = `gr-tendaggi` e le variabili d'ambiente sopra.
+È configurato per **Netlify** tramite `netlify.toml` e il runtime ufficiale `@netlify/plugin-nextjs`, che
+trasforma le pagine dinamiche e `/api/contact` in Netlify Functions.
+
+1. Su Netlify: *Add new project → Import an existing project* e scegliere questo repository.
+2. *Base directory*: `gr-tendaggi`. Build command e publish directory vengono letti da `netlify.toml`
+   (`npm run build`, `.next`): se nel pannello sono impostati valori diversi, svuotarli o allinearli.
+3. *Site configuration → Environment variables*: aggiungere le variabili della tabella sopra
+   (`NEXT_PUBLIC_SITE_URL` con il dominio definitivo, le tre variabili Resend per attivare il modulo).
+4. Avviare il deploy. Nel log deve comparire il plugin `@netlify/plugin-nextjs` e, in *Functions bundling*,
+   la funzione `___netlify-server-handler`: se le funzioni deployate sono 0, il runtime non è stato applicato
+   e le pagine rispondono 404.
+
+Le variabili `NEXT_PUBLIC_*` vengono incorporate durante la build: dopo averle cambiate serve un nuovo deploy.
+
+Verifica in locale, senza pubblicare nulla:
+
+```bash
+npx netlify-cli build --offline
+```
 
 ## Struttura
 

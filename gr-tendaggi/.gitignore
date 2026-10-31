@@ -45,3 +45,6 @@ next-env.d.ts
 # taste-skill inspector output
 /.taste-skill/inspect*/
 /.taste-skill/scenes/
+
+# Netlify local build output
+/.netlify/
