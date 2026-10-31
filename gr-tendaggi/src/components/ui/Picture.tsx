@@ -7,13 +7,16 @@ type Props = {
   alt?: string;
   className?: string;
   imgClassName?: string;
+  /** Applied to the <img>. */
   style?: React.CSSProperties;
+  /** Applied to the <picture> wrapper. */
+  wrapperStyle?: React.CSSProperties;
 };
 
-export function Picture({ id, sizes, priority, alt, className, imgClassName, style }: Props) {
+export function Picture({ id, sizes, priority, alt, className, imgClassName, style, wrapperStyle }: Props) {
   const data = imageData(id);
   return (
-    <picture className={className}>
+    <picture className={className} style={wrapperStyle}>
       <source type="image/avif" srcSet={srcSet(id, "avif")} sizes={sizes} />
       <source type="image/webp" srcSet={srcSet(id, "webp")} sizes={sizes} />
       <img

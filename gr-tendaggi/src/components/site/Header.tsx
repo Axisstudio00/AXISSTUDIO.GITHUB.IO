@@ -157,6 +157,7 @@ export function Header() {
   return (
     <>
       <header
+        data-site-header
         className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,color] duration-500 ease-[var(--ease-out)] ${ground} ${tone} ${light ? "on-dark" : ""} ${
           hidden && !open ? "-translate-y-full" : "translate-y-0"
         } ${open ? "invisible" : ""}`}

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Picture } from "@/components/ui/Picture";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { gsap } from "gsap";
 import { MOTION_OK, useMotion } from "@/lib/gsap";
 import type { ImageId } from "@/lib/images";
 
@@ -12,9 +13,23 @@ const frames: { id: ImageId; position: string }[] = [
   { id: "doppiaAltezza", position: "58% 50%" },
 ];
 
+const INTRO_KEY = "grtc-intro";
+const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+function Curtain({ side, layer }: { side: "left" | "right"; layer: "front" | "back" }) {
+  return (
+    <div data-curtain={side} data-layer={layer} className={`curtain curtain-${side} curtain-${layer}`}>
+      <div className="curtain-fabric" />
+      <div className="curtain-folds" />
+      <div className="curtain-shade" />
+    </div>
+  );
+}
+
 export function Hero() {
   const [active, setActive] = useState(0);
   const [extraFrames, setExtraFrames] = useState(false);
+  const skipRef = useRef<() => void>(() => {});
 
   // Signature move: light shifting in a room. Slow crossfade, paused when the tab is hidden.
   useEffect(() => {
@@ -51,6 +66,110 @@ export function Hero() {
     });
   });
 
+  // Curtain intro: armed before first paint by the inline head script (homepage, once per session,
+  // motion allowed). The panels open, the room brightens, then title, copy and navigation follow.
+  useEffect(() => {
+    const html = document.documentElement;
+    const root = ref.current;
+    if (!root || !html.classList.contains("intro-armed")) return;
+    html.classList.add("intro-started");
+
+    let tl: gsap.core.Timeline | undefined;
+    let done = false;
+    const events = ["wheel", "touchmove", "keydown"] as const;
+
+    const finish = () => {
+      if (done) return;
+      done = true;
+      events.forEach((e) => window.removeEventListener(e, skip));
+      html.classList.remove("intro-armed");
+      html.classList.add("intro-done");
+      try {
+        sessionStorage.setItem(INTRO_KEY, "1");
+      } catch {}
+      if (tl) {
+        const targets = root.querySelectorAll("[data-hero-line] > span, [data-intro-fade], [data-hero-media]");
+        tl.kill();
+        gsap.set(targets, { clearProps: "all" });
+        gsap.set("[data-site-header]", { clearProps: "opacity,visibility" });
+      }
+    };
+    // Any intent to read or move on ends the intro at once.
+    function skip() {
+      if (tl) tl.progress(1);
+      else finish();
+    }
+    skipRef.current = skip;
+    events.forEach((e) => window.addEventListener(e, skip, { passive: true, once: true }));
+
+    // Wait (briefly) for the hero photograph so the opening never reveals an empty frame.
+    const img = root.querySelector<HTMLImageElement>("[data-hero-media] img");
+    const imageReady =
+      img && !img.complete ? Promise.race([img.decode().catch(() => {}), wait(1400)]) : Promise.resolve();
+
+    // The intro uses the GSAP core shipped with this component, so it starts as soon as the page is interactive.
+    imageReady
+      .then(() => {
+        if (done) return;
+        const small = window.matchMedia("(max-width: 767px)").matches;
+        const open = small ? 1.05 : 1.6;
+        const start = small ? 0.12 : 0.2;
+        const q = gsap.utils.selector(root);
+
+        tl = gsap.timeline({ defaults: { ease: "power3.inOut" }, onComplete: finish });
+        tl.to(q('[data-curtain="left"][data-layer="front"]'), { xPercent: -100, scaleX: 0.55, duration: open }, start)
+          .to(q('[data-curtain="right"][data-layer="front"]'), { xPercent: 100, scaleX: 0.55, duration: open }, start)
+          .to(
+            q('[data-curtain="left"]'),
+            { keyframes: { skewY: [0, -1.2, 0] }, duration: open, ease: "sine.inOut" },
+            start,
+          )
+          .to(
+            q('[data-curtain="right"]'),
+            { keyframes: { skewY: [0, 1.2, 0] }, duration: open, ease: "sine.inOut" },
+            start,
+          );
+        if (!small) {
+          tl.to(
+            q('[data-curtain="left"][data-layer="back"]'),
+            { xPercent: -100, scaleX: 0.5, duration: open * 1.08 },
+            start + 0.12,
+          )
+            .to(
+              q('[data-curtain="right"][data-layer="back"]'),
+              { xPercent: 100, scaleX: 0.5, duration: open * 1.08 },
+              start + 0.12,
+            )
+            .to(
+              q(".intro-glow"),
+              { keyframes: { opacity: [0, 1, 0] }, duration: open + 0.6, ease: "sine.inOut" },
+              start,
+            );
+        }
+        tl.to(q(".intro-dim"), { opacity: 0, duration: open + 0.35, ease: "power2.out" }, start)
+          .fromTo(q("[data-hero-media]"), { scale: 1.1 }, { scale: 1, duration: open + 1, ease: "expo.out" }, 0)
+          .fromTo(
+            q("[data-hero-line] > span"),
+            { y: 0, yPercent: 105 },
+            { y: 0, yPercent: 0, duration: small ? 0.9 : 1.1, stagger: 0.12, ease: "expo.out" },
+            start + open * 0.82,
+          )
+          .fromTo(
+            q("[data-intro-fade]"),
+            { autoAlpha: 0, y: 16 },
+            { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.08, ease: "expo.out" },
+            start + open * 0.82 + 0.35,
+          )
+          .fromTo("[data-site-header]", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.7, ease: "power1.out" }, "<0.1");
+      })
+      .catch(finish);
+
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, skip));
+      tl?.kill();
+    };
+  }, [ref]);
+
   return (
     <section
       ref={ref}
@@ -81,6 +200,22 @@ export function Hero() {
       <div aria-hidden="true" className="scrim-top absolute inset-x-0 top-0 h-40" />
       <div aria-hidden="true" className="scrim-bottom absolute inset-0" />
 
+      <div aria-hidden="true" className="intro">
+        <div className="intro-dim" />
+        <div className="intro-glow" />
+        <Curtain side="left" layer="back" />
+        <Curtain side="right" layer="back" />
+        <Curtain side="left" layer="front" />
+        <Curtain side="right" layer="front" />
+      </div>
+      <button
+        type="button"
+        onClick={() => skipRef.current()}
+        className="intro-skip absolute right-[var(--margin)] bottom-5 z-30 min-h-11 cursor-pointer items-center px-1 text-[0.875rem] text-ivory underline underline-offset-4"
+      >
+        Salta l&apos;introduzione
+      </button>
+
       <div data-hero-content className="frame absolute inset-x-0 bottom-0 pb-[clamp(1.75rem,6svh,4.5rem)]">
         <div className="grid-12 items-end gap-y-7">
           <h1
@@ -95,11 +230,11 @@ export function Hero() {
             </span>
           </h1>
           <div className="col-span-12 sm:col-span-8 md:col-span-6 xl:col-span-4 xl:col-start-9">
-            <p className="max-w-[34ch] text-[1rem] leading-relaxed text-ivory sm:text-[1.25rem]">
+            <p data-intro-fade className="max-w-[34ch] text-[1rem] leading-relaxed text-ivory sm:text-[1.25rem]">
               Soluzioni su misura per trasformare la luce, valorizzare gli ambienti e vivere ogni spazio con una nuova
               prospettiva.
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div data-intro-fade className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
               <ButtonLink href="#soluzioni" tone="light">
                 Scopri le nostre soluzioni
               </ButtonLink>
@@ -121,7 +256,7 @@ export function Hero() {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-[0.875rem] text-sand">
+        <p data-intro-fade className="mt-8 text-[0.875rem] text-sand">
           Tende, tende da sole, zanzariere e schermature su misura · San Lazzaro di Savena, Bologna
         </p>
       </div>

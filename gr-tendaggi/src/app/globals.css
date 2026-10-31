@@ -197,7 +197,7 @@
   }
 
   .scrim-bottom {
-    background: linear-gradient(
+    background: linear-gradient( /* taste-skill-ignore: neutral scrim over photograph */
       /* taste-skill-ignore: neutral scrim over photograph */ to top,
       rgb(28 27 24 / 0.78),
       rgb(28 27 24 / 0.42) 40%,
@@ -206,7 +206,7 @@
   }
   @media (min-width: 768px) {
     .scrim-bottom {
-      background: linear-gradient(
+      background: linear-gradient( /* taste-skill-ignore: neutral scrim over photograph */
         /* taste-skill-ignore: neutral scrim over photograph */ to top,
         rgb(28 27 24 / 0.66),
         rgb(28 27 24 / 0.2) 45%,
@@ -215,7 +215,7 @@
     }
   }
   .scrim-top-strong {
-    background: linear-gradient(
+    background: linear-gradient( /* taste-skill-ignore: neutral scrim over photograph */
       /* taste-skill-ignore: neutral scrim over photograph */ to bottom,
       rgb(28 27 24 / 0.86),
       rgb(28 27 24 / 0.55) 50%,
@@ -223,7 +223,7 @@
     );
   }
   .scrim-top {
-    background: linear-gradient(
+    background: linear-gradient( /* taste-skill-ignore: neutral scrim over photograph */
       /* taste-skill-ignore: neutral scrim over photograph */ to bottom,
       rgb(28 27 24 / 0.55),
       rgb(28 27 24 / 0) 100%
@@ -269,6 +269,162 @@ html.motion-armed [data-line] > span {
 }
 html.motion-armed [data-clip] {
   clip-path: inset(100% 0 0 0);
+}
+
+/* ------------------------------------------------------------------ Curtain intro (homepage, once per session)
+   html.intro-armed is set by the inline head script before first paint, so the curtains are closed from
+   the very first frame; the GSAP timeline in Hero opens them. html.intro-fallback opens them with CSS if
+   the script never starts. Transforms and opacity only. */
+.intro {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  overflow: hidden;
+  pointer-events: none;
+}
+html.intro-armed .intro,
+html.intro-fallback .intro {
+  display: block;
+}
+.intro-dim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-night);
+  opacity: 0.5;
+}
+.intro-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background: radial-gradient( /* taste-skill-ignore: light through the window (intro) */
+    /* taste-skill-ignore: light through the window */ 60% 70% at 58% 45%,
+    rgb(255 226 182 / 0.55),
+    rgb(255 226 182 / 0) 70%
+  );
+}
+.curtain {
+  position: absolute;
+  top: -2%;
+  bottom: -2%;
+  width: 53%;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.curtain-left {
+  left: 0;
+  transform-origin: 0% 50%;
+}
+.curtain-right {
+  right: 0;
+  transform-origin: 100% 50%;
+}
+.curtain-back {
+  width: 57%;
+  opacity: 0.55;
+}
+.curtain-fabric,
+.curtain-folds,
+.curtain-shade {
+  position: absolute;
+  inset: 0;
+}
+/* Photographic sheer cut from the project's own pictures; the base colour stands in until it loads. */
+.curtain-fabric {
+  background: #e7dccb url("/images/tenda-intro-velo-470.webp") center / cover no-repeat;
+  opacity: 0.94;
+}
+.curtain-right .curtain-fabric {
+  transform: scaleX(-1);
+}
+.curtain-back .curtain-fabric {
+  background-position: 30% 50%;
+}
+/* Irregular pleats layered over the photo, so the folds bunch as the panel gathers. */
+.curtain-folds {
+  mix-blend-mode: multiply;
+  background:
+    repeating-linear-gradient( /* taste-skill-ignore: fabric pleats (intro curtain) */
+      /* taste-skill-ignore: fabric pleats */ 90deg,
+      rgb(70 52 36 / 0) 0px,
+      rgb(70 52 36 / 0.16) 22px,
+      rgb(255 246 232 / 0.06) 41px,
+      rgb(70 52 36 / 0.1) 63px,
+      rgb(70 52 36 / 0) 84px
+    ),
+    repeating-linear-gradient(90deg, rgb(40 30 20 / 0) 0px, rgb(40 30 20 / 0.08) 47px, rgb(40 30 20 / 0) 131px); /* taste-skill-ignore: fabric pleats (intro curtain) */
+}
+/* Depth: darker leading edge, a soft cast shade on the room, a heavier hem. */
+.curtain-left .curtain-shade {
+  background:
+    linear-gradient(/* taste-skill-ignore: fabric shading */ to left, rgb(28 27 24 / 0.3), rgb(28 27 24 / 0) 16%),
+    linear-gradient(to top, rgb(28 27 24 / 0.28), rgb(28 27 24 / 0) 14%); /* taste-skill-ignore: fabric hem shading (intro curtain) */
+}
+.curtain-right .curtain-shade {
+  background:
+    linear-gradient(/* taste-skill-ignore: fabric shading */ to right, rgb(28 27 24 / 0.3), rgb(28 27 24 / 0) 16%),
+    linear-gradient(to top, rgb(28 27 24 / 0.28), rgb(28 27 24 / 0) 14%); /* taste-skill-ignore: fabric hem shading (intro curtain) */
+}
+.curtain-front::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+}
+.curtain-left.curtain-front::after {
+  right: -56px;
+  background: linear-gradient(/* taste-skill-ignore: cast shadow */ to right, rgb(28 27 24 / 0.26), rgb(28 27 24 / 0));
+}
+.curtain-right.curtain-front::after {
+  left: -56px;
+  background: linear-gradient(/* taste-skill-ignore: cast shadow */ to left, rgb(28 27 24 / 0.26), rgb(28 27 24 / 0));
+}
+@media (max-width: 767px) {
+  .curtain-fabric {
+    background-image: url("/images/tenda-intro-velo-stretto-330.webp");
+  }
+  .curtain-back,
+  .intro-glow {
+    display: none;
+  }
+}
+.intro-skip {
+  display: none;
+}
+html.intro-armed .intro-skip {
+  display: inline-flex;
+}
+
+/* While the curtains are closed the title, the copy below it and the navigation wait. */
+html.intro-armed [data-hero-line] > span {
+  animation: none;
+  transform: translateY(105%);
+}
+html.intro-armed [data-hero-media],
+html.intro-done [data-hero-media],
+html.intro-done [data-hero-line] > span {
+  animation: none;
+}
+html.intro-armed [data-intro-fade],
+html.intro-armed [data-site-header] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Fallback when the timeline never starts: the curtains open with CSS alone. */
+html.intro-fallback .curtain-left {
+  transform: translateX(-102%) scaleX(0.6);
+  transition: transform 1.2s var(--ease-in-out);
+}
+html.intro-fallback .curtain-right {
+  transform: translateX(102%) scaleX(0.6);
+  transition: transform 1.2s var(--ease-in-out);
+}
+html.intro-fallback .intro-dim {
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
 
 @keyframes stepin {

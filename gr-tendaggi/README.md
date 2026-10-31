@@ -14,8 +14,11 @@ npm run build && npm start
 Rigenerare le immagini ottimizzate dopo aver cambiato gli originali in `assets/originals/`:
 
 ```bash
-npm run images       # AVIF + WebP responsive in public/images, crop Open Graph in public/og
+npm run images       # asset derivati, AVIF + WebP responsive in public/images, crop Open Graph in public/og
 ```
+
+Le varianti già presenti in `public/images` non vengono ricodificate; per rigenerarle dopo una modifica:
+`FORCE=1 npm run images`.
 
 ## Configurazione (`.env.local`, vedi `.env.example`)
 
@@ -92,6 +95,38 @@ mai come lavori eseguiti.
 | 16 | pergola-bioclimatica (16:9) | Copertura a lamelle | Soluzioni, scena outdoor, hero Outdoor |
 | 17 | zanzariera-scorrevole (4:5) | Zanzariera scorrevole | Soluzioni, Ispirazioni, hero Zanzariere |
 | 18 | tapparella-avvolgibile (4:5) | Tapparella avvolgibile | Ispirazioni, Schermature |
+
+**Asset derivati** (`assets/derived`, generati da `scripts/derived-assets.mjs` a partire dagli originali, che
+restano intatti):
+
+| File | Origine | Uso |
+| --- | --- | --- |
+| tenda-intro-velo | ritaglio dei veli dell'immagine 11 | Tende dell'intro, desktop |
+| tenda-intro-velo-stretto | ritaglio del velo dell'immagine 01 | Tende dell'intro, mobile |
+| camera-filtrante | immagine 10 + un secondo velo più fitto sulla vetrata | Simulatore, stato Filtrante |
+| camera-oscurante | immagine 10 + il tendaggio opaco della stessa stanza sulla vetrata, luce dalla finestra ridotta, lampada accesa | Simulatore, stato Oscurante |
+
+## Intro della homepage
+
+Alla prima apertura della homepage in una sessione, due pannelli di velo (texture fotografica, pieghe, ombra
+sul bordo e sull'orlo) coprono la foto; una GSAP Timeline li apre verso i lati mentre la stanza si schiarisce,
+poi entrano titolo, sottotitolo, CTA e navigazione (circa 3 s su desktop, 2,3 s su mobile, con pannelli singoli
+e texture più leggera).
+
+- Lo script inline in `layout.tsx` arma l'intro prima del primo frame, quindi non c'è flash della pagina sotto.
+- Non si ripete nella stessa sessione (`sessionStorage`), né nella navigazione interna.
+- Si salta con il pulsante "Salta l'introduzione", con un tasto qualsiasi, con la rotella o con lo scroll touch.
+- Con `prefers-reduced-motion` non parte.
+- Se il JavaScript non parte, dopo 4 s le tende si aprono comunque via CSS.
+
+## Simulatore "Quanta luce?"
+
+Tre stati della stessa fotografia (Velo = originale, Filtrante, Oscurante) sovrapposti e sfumati con l'opacità
+in base al cursore: geometria, arredi e inquadratura non cambiano, varia solo la vetrata con il suo tessuto e
+la luce che entra. È una simulazione indicativa costruita su un'unica fotografia generata, ed è dichiarata come
+tale sul sito. Per una resa fotorealistica servono tre scatti reali della stessa stanza, da treppiede e con la
+stessa esposizione, con velo, filtrante e oscurante montati (oppure tre render della stessa scena). Basta
+sostituire i tre file in `assets/originals` e `assets/derived` mantenendo i nomi.
 
 ## Da verificare con l'azienda prima della pubblicazione
 

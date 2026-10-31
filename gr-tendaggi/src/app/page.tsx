@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* Curtain textures for the intro: fetched early so the panels never show their flat base colour. */}
+      <link rel="preload" as="image" href="/images/tenda-intro-velo-470.webp" media="(min-width: 768px)" />
+      <link rel="preload" as="image" href="/images/tenda-intro-velo-stretto-330.webp" media="(max-width: 767px)" />
       <Hero />
       <Manifesto />
       <Solutions />
